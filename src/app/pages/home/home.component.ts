@@ -6,8 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  public data = "Hello World";
+  public data = [
+    {
+      name: 'Miran',
+      id: 1,
+    },
+    {
+      name: 'Raja',
+      id: 2,
+    },
+    {
+      name: 'Saifullah',
+      id: 3,
+    },
+    {
+      name: 'NoOne',
+      id: 4,
+    },
+  ];
   public data2 = true;
 
-  public color = "text-primary";
+  public color = 'text-primary';
 }
