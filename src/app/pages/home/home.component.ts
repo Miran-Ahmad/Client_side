@@ -27,4 +27,14 @@ export class HomeComponent {
   public data2 = true;
 
   public color = 'text-primary';
+
+  public constructor(){
+    this.fun1();
+  }
+  public fun1() {
+    alert('fu1');
+  }
+  public fun2(){
+    alert('fun2');
+  }
 }
