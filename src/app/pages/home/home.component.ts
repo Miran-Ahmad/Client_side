@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-home',
@@ -6,35 +7,53 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  public data = [
+  public productDetails: any;
+  public getProductDetails(product: any){
+    console.log(product);
+    this.productDetails = product;
+  }
+
+  public product = [
     {
-      name: 'Miran',
       id: 1,
+      name: 'Product 1',
+      price: '100',
+      description: 'This is a wider card with supporting text below as a in to additional content.',
+      imgUrl: 'assets/images/home/img01.jpg'
     },
     {
-      name: 'Raja',
-      id: 2,
+      id: 1,
+      name: 'Product 1',
+      price: '100',
+      description: 'This is a wider card with supporting text below as a in to additional content.',
+      imgUrl: 'assets/images/home/img01.jpg'
     },
     {
-      name: 'Saifullah',
-      id: 3,
+      id: 1,
+      name: 'Product 1',
+      price: '100',
+      description: 'This is a wider card with supporting text below as a in to additional content.',
+      imgUrl: 'assets/images/home/img01.jpg'
     },
     {
-      name: 'NoOne',
-      id: 4,
+      id: 1,
+      name: 'Product 1',
+      price: '100',
+      description: 'This is a wider card with supporting text below as a in to additional content.',
+      imgUrl: 'assets/images/home/img01.jpg'
     },
+    {
+      id: 1,
+      name: 'Product 1',
+      price: '100',
+      description: 'This is a wider card with supporting text below as a in to additional content.',
+      imgUrl: 'assets/images/home/img01.jpg'
+    }
   ];
-  public data2 = true;
 
-  public color = 'text-primary';
-
-  public constructor(){
-    this.fun1();
-  }
-  public fun1() {
-    alert('fu1');
-  }
-  public fun2(){
-    alert('fun2');
+  constructor(public apiService: ApiService) {
+    this.apiService.getProducts().subscribe((productResponse) => {
+      console.log(productResponse);
+    });
   }
 }

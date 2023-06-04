@@ -1,18 +1,78 @@
-<div>
-  <p class="{{ color }}">Hello another world</p>
-  <p class="{{ data2 === true ? 'text-primary' : 'text-secondary' }}">
-    Hello new world
-  </p>
+<div class="container">
+  <div class="product row">
+    <div
+      class="card col-lg-4 col-md-6 col-sm-12"
+      style="width: 20rem"
+      *ngFor="let product of product"
+    >
+      <img [src]="product.imgUrl" class="card-img-top" alt="..." />
 
-  <ul>
-    <li *ngFor="let data of data">
-      <span class="m-3">{{ data.id }}</span>
-      <span class="m-3">{{ data.name }}</span>
-    </li>
-  </ul>
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">₹ {{ product.price }}</p>
+        <a href="#" class="btn btn-primary">Add to cart</a>
+        <a
+          href="#"
+          class="btn btn-primary ms-2"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="getProductDetails(product)"
+          >product details
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <h1 *ngIf="data2">H11111</h1>
-  <p *ngIf="!data2">Pppppp</p>
-
-  <button (click)="fun2()">Submit</button>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Product detail
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3" style="max-width: 540px" *ngIf="productDetails">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="assets/images/home/img01.jpg"
+                class="img-fluid rounded-start"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ productDetails.name }}</h5>
+                <p class="card-text">₹{{ productDetails.price }}</p>
+                <p class="card-text">{{ productDetails.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Add To cart</button>
+      </div>
+    </div>
+  </div>
 </div>
