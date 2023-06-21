@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -7,53 +8,22 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  public productDetails: any;
-  public getProductDetails(product: any){
-    console.log(product);
-    this.productDetails = product;
+  public data: any;
+  public productDetail;
+
+  constructor(public apiService: ApiService, public router: Router) {
+    this.getData().then((products) => {
+      console.log(products);
+    });
   }
-
-  public product = [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '100',
-      description: 'This is a wider card with supporting text below as a in to additional content.',
-      imgUrl: 'assets/images/home/img01.jpg'
-    },
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '100',
-      description: 'This is a wider card with supporting text below as a in to additional content.',
-      imgUrl: 'assets/images/home/img01.jpg'
-    },
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '100',
-      description: 'This is a wider card with supporting text below as a in to additional content.',
-      imgUrl: 'assets/images/home/img01.jpg'
-    },
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '100',
-      description: 'This is a wider card with supporting text below as a in to additional content.',
-      imgUrl: 'assets/images/home/img01.jpg'
-    },
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '100',
-      description: 'This is a wider card with supporting text below as a in to additional content.',
-      imgUrl: 'assets/images/home/img01.jpg'
-    }
-  ];
-
-  constructor(public apiService: ApiService) {
-    this.apiService.getProducts().subscribe((productResponse) => {
-      console.log(productResponse);
+  public async getData() {
+    this.data = await this.apiService.getAllData();
+    return this.data;
+  }
+  public async getProductDetail(pid) {
+    this.apiService.getProduct(pid).then((product) => {
+      this.productDetail = product;
+      console.log(this.productDetail);
     });
   }
 }
