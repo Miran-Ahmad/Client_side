@@ -12,10 +12,12 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FooterComponent } from './common/footer/footer.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import {ReactiveFormsModule,FormsModule} from '@angular/forms'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NavbarComponent, FooterComponent, ContactComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NavbarComponent, FooterComponent, ContactComponent, CheckoutComponent],
+  imports: [BrowserModule, AppRoutingModule,ReactiveFormsModule, FormsModule , HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
   providers: [],
   bootstrap: [AppComponent],
 })
