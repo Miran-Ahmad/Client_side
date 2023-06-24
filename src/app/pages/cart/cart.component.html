@@ -1,0 +1,13 @@
+<div class="container">
+  <ul>
+    <li *ngFor="let product of products">
+      <h2>{{ product.name }}</h2>
+      <P>{{ product.author }}</P
+      ><P>{{ product.price }}</P>
+    </li>
+  </ul>
+
+  <button class="btn btn-light" routerLink="/checkout">
+    Proceed to Checkout
+  </button>
+</div>

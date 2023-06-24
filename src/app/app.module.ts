@@ -13,10 +13,11 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FooterComponent } from './common/footer/footer.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-import {ReactiveFormsModule,FormsModule} from '@angular/forms'
+import {ReactiveFormsModule,FormsModule} from '@angular/forms';
+import { CartComponent } from './pages/cart/cart.component'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, NavbarComponent, FooterComponent, ContactComponent, CheckoutComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, NavbarComponent, FooterComponent, ContactComponent, CheckoutComponent, CartComponent],
   imports: [BrowserModule, AppRoutingModule,ReactiveFormsModule, FormsModule , HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
   providers: [],
   bootstrap: [AppComponent],

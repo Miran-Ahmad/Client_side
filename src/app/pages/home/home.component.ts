@@ -9,13 +9,27 @@ import { ApiService } from 'src/app/api.service';
 })
 export class HomeComponent {
   public data: any;
-  public productDetail;
+  public productDetail: any;
+
+  public cartProducts = [];
+  public cartItems;
 
   constructor(public apiService: ApiService, public router: Router) {
     this.getData().then((products) => {
       console.log(products);
     });
   }
+
+  public addToCart(cartProducts){
+    this.cartProducts.push(cartProducts);
+
+    localStorage.setItem('cartProducts', JSON.stringify(this.cartProducts));
+
+    let getProduct = JSON.parse(localStorage.getItem('cartProducts'));
+    console.log(getProduct);
+    this.cartItems = getProduct;
+  }
+
   public async getData() {
     this.data = await this.apiService.getAllData();
     return this.data;

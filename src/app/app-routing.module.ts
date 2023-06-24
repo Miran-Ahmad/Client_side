@@ -5,12 +5,14 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'checkout/:id', component: CheckoutComponent}
+  { path: 'checkout', component: CheckoutComponent},  ///:id
+  { path: 'cart', component: CartComponent}
 ];
 
 @NgModule({

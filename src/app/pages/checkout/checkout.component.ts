@@ -16,6 +16,7 @@ import { ApiService } from 'src/app/api.service';
 export class CheckoutComponent {
   public productId;
   public productData;
+  public products: any;
   public form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     author: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -36,6 +37,9 @@ export class CheckoutComponent {
         this.productData = product;
       });
     });
+    let getProduct = JSON.parse(localStorage.getItem('cartProducts'));
+    console.log(getProduct);
+    this.products = getProduct;
   }
 
   public get name(): AbstractControl {
