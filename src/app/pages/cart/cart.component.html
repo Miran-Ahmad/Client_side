@@ -1,13 +1,14 @@
-<div class="container">
-  <ul>
-    <li *ngFor="let product of products">
-      <h2>{{ product.name }}</h2>
-      <P>{{ product.author }}</P
-      ><P>{{ product.price }}</P>
+<div class="container mt-5">
+  <h1>Your Cart</h1>
+  <ol>
+    <li *ngFor="let product of products; let i = index">
+      <h5>{{ product.name }} <button class="btn btn-secondary" (click)="deleteCartItem(i)">Remove</button></h5>
+      <h6>{{ product.author }}</h6
+      ><P>Price ₹ {{ product.price }}</P>
     </li>
-  </ul>
+  </ol>
 
-  <button class="btn btn-light" routerLink="/checkout">
+  <button class="btn btn-dark" routerLink="/checkout">
     Proceed to Checkout
   </button>
 </div>

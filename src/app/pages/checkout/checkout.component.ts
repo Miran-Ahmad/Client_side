@@ -17,6 +17,8 @@ export class CheckoutComponent {
   public productId;
   public productData;
   public products: any;
+
+  public total_Price:any;
   public form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     author: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -54,4 +56,14 @@ export class CheckoutComponent {
   public get price(): AbstractControl {
     return this.form.controls['price'];
   }
+
+  totalPrice() {
+    let total = 0;
+    for(let data of this.products){
+      total+= data.price;
+         
+    }
+    return total;
+  }
+
 }

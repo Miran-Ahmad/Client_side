@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
   <div class="row g-5">
     <div class="col-md-5 col-lg-4 order-md-last">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -20,23 +20,9 @@
         </li>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (INR)</span>
-          <strong>₹20</strong>
+          <strong>₹ {{ totalPrice() }}</strong>
         </li>
       </ul>
-
-      <form class="card p-2">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Promo code"
-            fdprocessedid="a0uqe"
-          />
-          <button type="submit" class="btn btn-dark" fdprocessedid="awv8rc">
-            Redeem
-          </button>
-        </div>
-      </form>
     </div>
     <div class="col-md-7 col-lg-8">
       <h4 class="mb-3">Billing address</h4>
@@ -193,23 +179,6 @@
             <div class="invalid-feedback">Zip code required.</div>
           </div>
         </div>
-
-        <hr class="my-4" />
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="same-address" />
-          <label class="form-check-label" for="same-address"
-            >Shipping address is the same as my billing address</label
-          >
-        </div>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="save-info" />
-          <label class="form-check-label" for="save-info"
-            >Save this information for next time</label
-          >
-        </div>
-
         <hr class="my-4" />
 
         <h4 class="mb-3">Payment</h4>
@@ -217,11 +186,23 @@
         <div class="my-3">
           <div class="form-check">
             <input
-              id="credit"
+              id="cod"
               name="paymentMethod"
               type="radio"
               class="form-check-input"
               checked=""
+              required=""
+            />
+            <label class="form-check-label" for="paypal"
+              >Cash on Delivery</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              id="credit"
+              name="paymentMethod"
+              type="radio"
+              class="form-check-input"
               required=""
             />
             <label class="form-check-label" for="credit">Credit card</label>
@@ -236,35 +217,15 @@
             />
             <label class="form-check-label" for="debit">Debit card</label>
           </div>
-          <div class="form-check">
-            <input
-              id="paypal"
-              name="paymentMethod"
-              type="radio"
-              class="form-check-input"
-              required=""
-            />
-            <label class="form-check-label" for="paypal">PayPal</label>
-          </div>
-          <div class="form-check">
-            <input
-              id="paypal"
-              name="paymentMethod"
-              type="radio"
-              class="form-check-input"
-              required=""
-            />
-            <label class="form-check-label" for="paypal"
-              >Cash on Delivery</label
-            >
-          </div>
         </div>
 
         <hr class="my-4" />
 
         <button
-          class="w-40 btn btn-light btn-lg"
+          class="w-40 btn btn-dark btn-lg"
           type="submit"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
           fdprocessedid="wj8i8"
         >
           Confirm Order
@@ -273,106 +234,44 @@
     </div>
   </div>
 </div>
-<!-- 
 
-
-
-
-
-
-
-
-
-
-<div class="container pt-5">
-    <div class="row">
-      <div class="col">
-        <form [formGroup]="form">
-          <div class="row">
-            <div class="col">
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input
-                  type="text"
-                  class="form-control border border-dark"
-                  id="name"
-                  placeholder="Name of Product"
-                  formControlName="name"
-                  [ngModel]="productData.name"
-                />
-                <div class="text-danger" *ngIf="name.touched && name.errors">
-                  Invalid name
-                </div>
-              </div>
-            </div>
-  
-            <div class="col">
-              <div class="mb-3">
-                <label for="author" class="form-label">Author</label>
-                <input
-                  type="text"
-                  class="form-control border border-dark"
-                  id="author"
-                  placeholder="Name of Author"
-                  formControlName="author"
-                  [ngModel]="productData.author"
-                  
-                />
-                <div class="text-danger" *ngIf="author.touched && author.errors">
-                  Invalid Author
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-12">
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <input
-                  type="text"
-                  class="form-control border border-dark"
-                  id="description"
-                  placeholder="Description of Product"
-                  formControlName="description"
-                  [ngModel]="productData.description"
-                  
-                />
-  
-                <div
-                  class="text-danger"
-                  *ngIf="description.touched && description.errors"
-                >
-                  Invalid description
-                </div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="price" class="form-label">Price (in ₹)</label>
-                <input
-                  type="number"
-                  class="form-control border border-dark"
-                  id="price"
-                  placeholder="Price (in numbers)"
-                  formControlName="price"
-                  [ngModel]="productData.price"
-                  
-                />
-                <div class="text-danger" *ngIf="price.touched && price.errors">
-                  Invalid price
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <button
-            class="btn btn-success"
-          >
-            Update
-          </button>
-        </form>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Order placed!</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Your order has been confirmed. Thank you for choosing Us!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          routerLink=""
+          data-bs-dismiss="modal"
+        >
+          Back to shopping
+        </button>
       </div>
     </div>
   </div>
-  
-
-   -->
+</div>
