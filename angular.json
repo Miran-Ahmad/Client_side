@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Teckat_Internship": {
+    "Client_side": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Teckat_Internship:build:production"
+              "browserTarget": "Client_side:build:production"
             },
             "development": {
-              "browserTarget": "Teckat_Internship:build:development"
+              "browserTarget": "Client_side:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Teckat_Internship:build"
+            "browserTarget": "Client_side:build"
           }
         },
         "test": {
@@ -112,7 +112,7 @@
           "builder": "@angular/fire:deploy",
           "options": {
             "version": 2,
-            "browserTarget": "Teckat_Internship:build:production"
+            "browserTarget": "Client_side:build:production"
           }
         }
       }

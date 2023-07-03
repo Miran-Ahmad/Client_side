@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "Teckat_Internship",
+      "target": "Client_side",
       "source": ".",
       "frameworksBackend": {}
     }

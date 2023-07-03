@@ -4,6 +4,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  FormBuilder,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
@@ -17,8 +18,9 @@ export class CheckoutComponent {
   public productId;
   public productData;
   public products: any;
+  myForm: FormGroup;
 
-  public total_Price:any;
+  public total_Price: any;
   public form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     author: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -28,17 +30,15 @@ export class CheckoutComponent {
     ]),
     price: new FormControl(null, [Validators.required]),
   });
+
+
+  
   constructor(
     public apiService: ApiService,
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public formBuilder: FormBuilder
   ) {
-    this.route.params.subscribe((param) => {
-      this.productId = param['id'];
-      this.apiService.getProduct(this.productId).then((product) => {
-        this.productData = product;
-      });
-    });
     let getProduct = JSON.parse(localStorage.getItem('cartProducts'));
     console.log(getProduct);
     this.products = getProduct;
@@ -59,11 +59,9 @@ export class CheckoutComponent {
 
   totalPrice() {
     let total = 0;
-    for(let data of this.products){
-      total+= data.price;
-         
+    for (let data of this.products) {
+      total += data.price;
     }
     return total;
   }
-
 }
